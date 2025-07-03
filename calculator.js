@@ -3,9 +3,22 @@ function add(numbers) {
     // If no number is passed as input then returning 0
     return 0;
   } else {
-    //Else returning value when only 1 number is passed
-    const value = parseInt(numbers);
-    return value;
+    //Getting all the numbers which are seprated by comma(,)
+    const number = numbers.split(",");
+
+    // If there is only one number then return it
+    if (number.length == 1) {
+      return parseInt(number[0]);
+    } else {
+      //Getting both numbers using indexes  
+      const firstNumber = number[0];
+      const secondNumber = number[1];
+
+      //Before doing sum we convert the number from string to integer using parseInt() method
+      const sum = parseInt(firstNumber) + parseInt(secondNumber);
+
+      return sum;
+    }
   }
 }
 
