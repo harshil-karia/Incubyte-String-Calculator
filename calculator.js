@@ -10,14 +10,13 @@ function add(numbers) {
     if (number.length == 1) {
       return parseInt(number[0]);
     } else {
-      //Getting both numbers using indexes  
-      const firstNumber = number[0];
-      const secondNumber = number[1];
-
-      //Before doing sum we convert the number from string to integer using parseInt() method
-      const sum = parseInt(firstNumber) + parseInt(secondNumber);
-
-      return sum;
+      
+      //Adding all the number passed where currentSum is initalized with 0.
+      const totalSum = number.reduce((currentSum,currentNumber) => {
+        return currentSum + parseInt(currentNumber);
+      },0)
+      
+      return totalSum;
     }
   }
 }

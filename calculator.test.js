@@ -18,3 +18,11 @@ test ("return the sum of 2 numbers which are comma(,) seprated",()=> {
     expect(add("4,6")).toBe(10);
     expect(add("100000000000000,100000000000000")).toBe(200000000000000);
 })
+
+//Test Case for string with any number of numbers which are comma(,) seprated
+test ("return the sum of all numbers which are inputed and each number is seprated by comma(,)", ()=> {
+  expect(add("2,3,4")).toBe(9);
+  expect(add("1,2,3,4")).toBe(10);
+  expect(add("1,2,3,4,5")).toBe(15);
+  expect(add("5,6,2,3,12")).toBe(28);
+})
