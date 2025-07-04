@@ -60,3 +60,10 @@ test("return the sum with delimeter of multi character", () => {
   expect(add("//[---]\n2---3---5")).toBe(10);
   expect(add("//[+++]\n1002+++3")).toBe(3);
 });
+
+//Test Case for nultiple custom delimeters with single character
+test("return the sum which contains any defined defined delimeters", () => {
+  expect(add("//[*][%][@]\n1*2%3@4")).toBe(10);
+  expect(add("//[*][!]\n1!2*3*4!5")).toBe(15);
+  expect(add("//[*][#]\n1#2#3")).toBe(6);
+})

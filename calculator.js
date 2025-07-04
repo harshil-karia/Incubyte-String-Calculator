@@ -4,7 +4,7 @@ function add(numbers) {
     return 0;
   } else {
     //Made new-line and comma as default delimeter
-    let delimiter = /[\n,]/;
+    let delimiterList = [",", "\n"];;
     let numberString = numbers;
 
     // Check if custom delimiter is specified at the beginning
@@ -12,32 +12,42 @@ function add(numbers) {
       const delimiterEndIndex = numbers.indexOf("\n"); //End of custom delimeter
       const delimiterDefinition = numbers.substring(2, delimiterEndIndex); // Get the custom delimeter
 
-      let delimeterPattern;
+      //Check if multiple delimeter is used or not
+      if (delimiterDefinition.includes("[") && delimiterDefinition.includes("]")) {
 
-      //Check if delimeter is multi character or single character
-      if (delimiterDefinition.startsWith("[") && delimiterDefinition.endsWith("]")) {
+        const delimiters = [...delimiterDefinition.matchAll(/\[(.*?)\]/g)].map(m => m[1]); //Find all the delimeters
 
-        //Create the personalized delimeter
-        const personalizedDelimeter = delimiterDefinition.slice(1, -1);
-        const escaped = personalizedDelimeter.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
-        delimeterPattern = new RegExp(escaped);
-        delimiter = delimeterPattern;
+        //If there is only one delimeter it can be of any length
+        if(delimiters.length == 1) {
+          delimiterList = [delimiters[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")];
+        } else {
+          //Check if all delimeters are of single character or not
+          const invalidDelimeter = delimiters.find(d => d.length !== 1);
+          if (invalidDelimeter) {
+            throw new Error("Invalid Delimeter [" + invalidDelimeter + "]");
+          }
+
+          //List of all delimeters
+          delimiterList = delimiters.map((d) => d.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+        }
       } else {
-        
+
         // Go with single character delimeter
         if (delimiterDefinition.length !== 1) {
           throw new Error("Only single-character delimiters are allowed."); //The delimeter should be of single character
         }
 
-        const escapedDelimiter = delimiterDefinition.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"); // List of some delimeters for Regex
-        delimiter = new RegExp(escapedDelimiter);
+        delimiterList = [delimiterDefinition.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")];
         
       }
       numberString = numbers.substring(delimiterEndIndex + 1);
     }
 
-    // Spliting numbers using the updated delimeter
-    const arrayOfNumbers = numberString.split(delimiter);
+    //Regex to split the numbers
+    const splitRegex = new RegExp(delimiterList.join("|"));
+
+    // Spliting numbers using all delimeters
+    const arrayOfNumbers = numberString.split(splitRegex);
 
     const number = arrayOfNumbers.map((n) => parseInt(n)); //Convert the number from string format to integer
 
