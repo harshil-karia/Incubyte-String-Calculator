@@ -33,3 +33,9 @@ test("return the summ of all number which are inputed and each number is seprate
   expect(add("2,3\n5")).toBe(10);
   expect(add("3,8\n6,12")).toBe(29);
 });
+
+test("return the sum of numbers which are seprated by custom delimeters", () => {
+  expect(add("//*\n2*3")).toBe(5);
+  expect(add("//!\n3!4!5!6!7")).toBe(25);
+  expect(add("//+\n1+2+3+4+5")).toBe(15);
+});
