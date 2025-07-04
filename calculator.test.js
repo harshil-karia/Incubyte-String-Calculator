@@ -53,3 +53,10 @@ test("ignore the numbers that are greater than 1000", () => {
   expect(add("2005,12")).toBe(12);
   expect(add("1000,10001,2,1")).toBe(1003);
 });
+
+//Test Case for multi character delimeter
+test("return the sum with delimeter of multi character", () => {
+  expect(add("//[***]\n2***5")).toBe(7);
+  expect(add("//[---]\n2---3---5")).toBe(10);
+  expect(add("//[+++]\n1002+++3")).toBe(3);
+});
