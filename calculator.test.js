@@ -16,7 +16,7 @@ test("return the only number when one number is entered", () => {
 test("return the sum of 2 numbers which are comma(,) seprated", () => {
   expect(add("2,3")).toBe(5);
   expect(add("4,6")).toBe(10);
-  expect(add("100000000000000,100000000000000")).toBe(200000000000000);
+  expect(add("20,30")).toBe(50);
 });
 
 //Test Case for string with any number of numbers which are comma(,) seprated
@@ -45,3 +45,11 @@ test("return the sum of numbers which are seprated by custom delimeters", () => 
 test("throw the exception when the numbers are negative", () => {
   expect(add("2,-3")).toBe(-1);
 })
+
+//Test Case for ignoring numbers greater than 1000
+test("ignore the numbers that are greater than 1000", () => {
+  expect(add("2,1001")).toBe(2);
+  expect(add("1001,1001")).toBe(0);
+  expect(add("2005,12")).toBe(12);
+  expect(add("1000,10001,2,1")).toBe(1003);
+});

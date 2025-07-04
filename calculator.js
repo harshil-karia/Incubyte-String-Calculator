@@ -22,7 +22,9 @@ function add(numbers) {
     }
 
     // Spliting numbers using the updated delimeter
-    const number = numberString.split(delimiter);
+    const arrayOfNumbers = numberString.split(delimiter);
+
+    const number = arrayOfNumbers.map(n => parseInt(n)); //Convert the number from string format to integer
 
     //Filtered the negative numbers and stored them
     const negativeNumbers = number.filter((currentNumber) => currentNumber < 0);
@@ -30,13 +32,16 @@ function add(numbers) {
       throw new Error("negative numbers not allowed. The negative number inputed are " + negativeNumbers.join(",")); // 
     }
 
+    //Filter the numbers and ignore numbers greater than 1000
+    const validNumbers = number.filter((currentNumber) => currentNumber <= 1000);
+
     // If there is only one number then return it
-    if (number.length == 1) {
-      return parseInt(number[0]);
+    if (validNumbers.length == 1) {
+      return validNumbers[0];
     } else {
       //Adding all the number passed where currentSum is initalized with 0.
-      const totalSum = number.reduce((currentSum, currentNumber) => {
-        return currentSum + parseInt(currentNumber);
+      const totalSum = validNumbers.reduce((currentSum, currentNumber) => {
+        return currentSum + currentNumber;
       }, 0);
 
       return totalSum;
