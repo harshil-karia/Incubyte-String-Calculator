@@ -24,6 +24,12 @@ function add(numbers) {
     // Spliting numbers using the updated delimeter
     const number = numberString.split(delimiter);
 
+    //Filtered the negative numbers and stored them
+    const negativeNumbers = number.filter((currentNumber) => currentNumber < 0);
+    if (negativeNumbers.length > 0) {
+      throw new Error("negative numbers not allowed. The negative number inputed are " + negativeNumbers.join(",")); // 
+    }
+
     // If there is only one number then return it
     if (number.length == 1) {
       return parseInt(number[0]);
