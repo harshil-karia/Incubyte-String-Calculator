@@ -16,20 +16,10 @@ function add(numbers) {
       if (delimiterDefinition.includes("[") && delimiterDefinition.includes("]")) {
 
         const delimiters = [...delimiterDefinition.matchAll(/\[(.*?)\]/g)].map(m => m[1]); //Find all the delimeters
+        
+        //List of all delimeters
+        delimiterList = delimiters.map((d) => d.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
 
-        //If there is only one delimeter it can be of any length
-        if(delimiters.length == 1) {
-          delimiterList = [delimiters[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")];
-        } else {
-          //Check if all delimeters are of single character or not
-          const invalidDelimeter = delimiters.find(d => d.length !== 1);
-          if (invalidDelimeter) {
-            throw new Error("Invalid Delimeter [" + invalidDelimeter + "]");
-          }
-
-          //List of all delimeters
-          delimiterList = delimiters.map((d) => d.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-        }
       } else {
 
         // Go with single character delimeter
