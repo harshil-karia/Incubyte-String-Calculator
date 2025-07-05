@@ -43,7 +43,7 @@ test("return the sum of numbers which are seprated by custom delimeters", () => 
 
 //Test Case for negative numbers should throw eception
 test("throw the exception when the numbers are negative", () => {
-  expect(add("2,-3")).toBe(-1);
+  expect(add("2,-3,-5")).toBe(-6);
 });
 
 //Test Case for ignoring numbers greater than 1000
@@ -62,7 +62,7 @@ test("return the sum with delimeter of multi character", () => {
 });
 
 //Test Case for nultiple custom delimeters with single character
-test("return the sum which contains any defined defined delimeters", () => {
+test("return the sum which contains any defined delimeters", () => {
   expect(add("//[*][%][@]\n1*2%3@4")).toBe(10);
   expect(add("//[*][!]\n1!2*3*4!5")).toBe(15);
   expect(add("//[*][#]\n1#2#3")).toBe(6);

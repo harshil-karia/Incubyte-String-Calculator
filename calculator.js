@@ -4,7 +4,7 @@ function add(numbers) {
     return 0;
   } else {
     //Made new-line and comma as default delimeter
-    let delimiterList = [",", "\n"];;
+    let delimiterList = [",", "\n"];
     let numberString = numbers;
 
     // Check if custom delimiter is specified at the beginning
@@ -47,7 +47,7 @@ function add(numbers) {
       throw new Error(
         "negative numbers not allowed. The negative number inputed are " +
           negativeNumbers.join(",")
-      ); //
+      );
     }
 
     //Filter the numbers and ignore numbers greater than 1000
